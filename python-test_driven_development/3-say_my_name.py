@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Saying name"""
 
+
 def say_my_name(first_name, last_name=""):
     """say my name func"""
     if not isinstance(first_name, str):
