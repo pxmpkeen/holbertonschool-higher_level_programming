@@ -19,6 +19,6 @@ def matrix_divided(matrix, div):
         lambda x: list(map(
             lambda y: round(y / div, 2) if isinstance(
                 y, (float, int)
-                ) else TypeError(itemerror), x
-            )) if len(x) == l else TypeError(sizeerror), matrix
+                ) else raise TypeError(itemerror), x
+            )) if len(x) == l else raise TypeError(sizeerror), matrix
         ))
