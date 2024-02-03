@@ -1,0 +1,9 @@
+>>> add_integer = __import__ ('0-add_integer').add_integer
+
+>>> add_integer(69, 91)
+100
+
+>>> add_integer('hello', 43)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
