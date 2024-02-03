@@ -9,6 +9,12 @@ def matrix_divided(matrix, div):
     itemerror = "matrix must be a matrix (list of lists) of integers/floats"
     sizeerror = "Each row of the matrix must have the same size"
 
+    def itemerrorfunc():
+        raise TypeError(itemerror)
+
+    def sizeerrorfunc():
+        raise TypeError(itemerror)
+
     if int(div) == 0:
         raise ZeroDivisionError(divisionerror)
     elif not isinstance(div, (int, float)):
@@ -19,6 +25,6 @@ def matrix_divided(matrix, div):
         lambda x: list(map(
             lambda y: round(y / div, 2) if isinstance(
                 y, (float, int)
-                ) else raise TypeError(itemerror), x
-            )) if len(x) == length else raise TypeError(sizeerror), matrix
+                ) else itemerrorfunc(), x
+            )) if len(x) == length else sizeerrorfunc(), matrix
         ))
