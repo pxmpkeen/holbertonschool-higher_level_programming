@@ -6,11 +6,6 @@ def text_indentation(text):
     """func"""
     if not isinstance(text, str):
         raise TypeError("text must be a string")
-    flag = 0
-    for char in ".:?":
-        text = text.replace(char, char + "\n\n")
-    for char in text:
-        if char != ' ':
-            flag = 1
-        if flag == 1:
-            print(char, end="")
+    for c in ".:?":
+        text = text.replace(c, c + "\n\n")
+    print("\n".join(l.strip() for l in text.split("\n")), end="")
