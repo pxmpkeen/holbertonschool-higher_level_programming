@@ -13,7 +13,7 @@ def matrix_divided(matrix, div):
         raise TypeError(itemerror)
 
     def sizeerrorfunc():
-        raise TypeError(itemerror)
+        raise TypeError(sizeerror)
 
     if int(div) == 0:
         raise ZeroDivisionError(divisionerror)
