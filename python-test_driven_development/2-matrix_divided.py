@@ -14,11 +14,11 @@ def matrix_divided(matrix, div):
     elif not isinstance(div, (int, float)):
         raise TypeError(typeerror)
 
-    l = len(matrix[0])
+    length = len(matrix[0])
     return list(map(
         lambda x: list(map(
             lambda y: round(y / div, 2) if isinstance(
                 y, (float, int)
                 ) else raise TypeError(itemerror), x
-            )) if len(x) == l else raise TypeError(sizeerror), matrix
+            )) if len(x) == length else raise TypeError(sizeerror), matrix
         ))
