@@ -17,7 +17,7 @@ def matrix_divided(matrix, div):
 
     if not isinstance(div, (int, float)):
         raise TypeError(typeerror)
-    if div == 0 or div == 0.0: 
+    if div == 0 or div == 0.0:
         raise ZeroDivisionError(divisionerror)
 
     length = len(matrix[0])
