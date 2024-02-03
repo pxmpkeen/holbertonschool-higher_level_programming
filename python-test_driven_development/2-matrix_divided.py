@@ -15,10 +15,10 @@ def matrix_divided(matrix, div):
     def sizeerrorfunc():
         raise TypeError(sizeerror)
 
-    if int(div) == 0:
-        raise ZeroDivisionError(divisionerror)
-    elif not isinstance(div, (int, float)):
+    if not isinstance(div, (int, float)):
         raise TypeError(typeerror)
+    if div == 0 or div == 0.0: 
+        raise ZeroDivisionError(divisionerror)
 
     length = len(matrix[0])
     return list(map(
