@@ -3,7 +3,7 @@
 import json
 
 
-def save_to_json_file(my_obj, filename):
+def load_from_json_file(filename):
     """JSON -> text -> file"""
     with open(filename, 'r') as fd:
-        fd.write(json.loads(my_obj))
+        return json.loads(fd.read())
