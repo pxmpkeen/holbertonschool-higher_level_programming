@@ -26,4 +26,6 @@ class Student:
         """Changing"""
         if not json:
             return
-        __init__(json["first_name", json["last_name"], json["age"])
+        self.first_name = json["first_name"]
+        self.last_name = json["last_name"]
+        self.age = json["age"]
