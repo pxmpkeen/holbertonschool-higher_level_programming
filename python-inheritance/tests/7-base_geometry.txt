@@ -55,4 +55,4 @@ TypeError: name must be an integer
 >>> integer_validator("age", {3, 4})
 Traceback (most recent call last):
         ...
-NameError: name 'integer_validator' is not defined
+TypeError: name must be an integer
