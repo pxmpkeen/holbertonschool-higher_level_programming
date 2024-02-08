@@ -28,4 +28,4 @@ class Student:
             return
         for i in Student.__dict__:
             if str(i) in json:
-                self.i = json[str(i)]
+                Student.i = json[str(i)]
