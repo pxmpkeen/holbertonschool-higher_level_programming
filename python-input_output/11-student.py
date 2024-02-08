@@ -24,6 +24,8 @@ class Student:
 
     def reload_from_json(self, json):
         """Changing"""
+        if not json:
+            return
         for i in json:
             if i in Student.__dict__:
                 self.i = json[i]
