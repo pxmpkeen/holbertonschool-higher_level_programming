@@ -7,8 +7,8 @@ class Student:
 
     def __init__(self, first_name, last_name, age):
         """Initialization of object"""
-        self.last_name = last_name
         self.first_name = first_name
+        self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
@@ -26,6 +26,6 @@ class Student:
         """Changing"""
         if not json:
             return
-        for i in Student.__dict__:
-            if str(i) in json:
-                Student.i = json[str(i)]
+        self.first_name = json["first_name"]
+        self.last_name = json["last_name"]
+        self.age = json["age"]
