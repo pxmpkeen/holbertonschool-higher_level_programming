@@ -4,9 +4,6 @@
 
 class Student:
     """Class Student"""
-    first_name = ""
-    last_name = ""
-    age = 0
 
     def __init__(self, first_name, last_name, age):
         """Initialization of object"""
