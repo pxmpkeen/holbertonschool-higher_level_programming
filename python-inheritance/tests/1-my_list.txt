@@ -34,3 +34,6 @@ False
 
 >>> lista is listb
 False
+
+>>> type(my_list)
+<class '1-my_list.MyList'>
