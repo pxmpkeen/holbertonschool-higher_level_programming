@@ -26,6 +26,6 @@ class Student:
         """Changing"""
         if not json:
             return
-        for i in json:
-            if i in Student.__dict__:
-                self.i = json[i]
+        for i in Students.__dict__:
+            if str(i) in json:
+                self.i = json[str(i)]
