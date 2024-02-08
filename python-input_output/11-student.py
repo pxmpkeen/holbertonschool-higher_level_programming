@@ -26,6 +26,6 @@ class Student:
         """Changing"""
         if not json:
             return
-        self.first_name = json["first_name"]
-        self.last_name = json["last_name"]
-        self.age = json["age"]
+        keys = list(set(json.keys()) & set(Student.__dict__))
+        for i in keys:
+            self.i = json[str(i)]
