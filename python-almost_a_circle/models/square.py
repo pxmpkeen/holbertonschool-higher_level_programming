@@ -62,3 +62,11 @@ class Square(Rectangle):
 
             initVals = initValsDict.values()
         self.__init__(*tuple(initVals))
+
+    def to_dictionary(self):
+        """Represent object as dictionary"""
+        id = self.id
+        s = self.__width
+        x = self.x
+        y = self.y
+        return {'id': id, 'x': x, 'size': s, 'y': y}
