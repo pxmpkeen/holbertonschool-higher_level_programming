@@ -32,4 +32,4 @@ class Base:
                 fd.write("[]")
             else:
                 list_dicts = [obj.to_dictionary() for obj in list_objs]
-                fd.write(Base.to_json_string(list_objs))
+                fd.write(Base.to_json_string(list_dicts))
