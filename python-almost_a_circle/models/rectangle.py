@@ -80,3 +80,10 @@ class Rectangle(Base):
     def display(self):
         """Displaying rectangle using symbols"""
         print(("#" * self.__width + '\n') * self.__height, end="")
+
+    def __str__(self):
+        """Changing toStr method"""
+        rectId = "[Rectangle] ({})".format(self.id)
+        rectPoses = "{}/{}".format(self.__x, self.__y)
+        rectSizes = "{}/{}".format(self.__width, self.__height)
+        return rectId + " " + rectPoses + " - " + rectSizes
