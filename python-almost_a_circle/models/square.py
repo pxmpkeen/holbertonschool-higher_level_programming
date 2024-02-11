@@ -21,3 +21,14 @@ class Square(Rectangle):
         """toStr method"""
         sId = "[Square] ({}) ".format(self.id)
         return sId + "{}/{} - {}".format(self.x, self.y, self.size)
+
+    @property
+    def size(self):
+        """Size getter"""
+        return self.__width
+
+    @size.setter
+    def size(self, value):
+        """Size setter"""
+        self.__width = value
+        self.__height = value
