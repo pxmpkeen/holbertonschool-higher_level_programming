@@ -90,7 +90,7 @@ class Rectangle(Base):
         rectSizes = "{}/{}".format(self.__width, self.__height)
         return rectId + " " + rectPoses + " - " + rectSizes
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Updating Rectangle"""
         initVals = [self.__width, self.__height, self.__x, self.__y]
         counter = 0
@@ -102,4 +102,17 @@ class Rectangle(Base):
             else:
                 initVals[counter] = arg
                 counter += 1
+
+        if flag == 0:
+            initValsDict = {
+                    "width": self.__width,
+                    "height": self.__height,
+                    "x": self.__x,
+                    "y": self.__y,
+                    "id": self.id
+                    }
+        for arg in kwargs.keys():
+            initValsDict[str(arg)] = kwargs[arg]
+
+        initVals = initValsDict.values()
         self.__init__(*tuple(initVals))
