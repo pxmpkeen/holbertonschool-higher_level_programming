@@ -89,3 +89,17 @@ class Rectangle(Base):
         rectPoses = "{}/{}".format(self.__x, self.__y)
         rectSizes = "{}/{}".format(self.__width, self.__height)
         return rectId + " " + rectPoses + " - " + rectSizes
+
+    def update(self, *args):
+        """Updating Rectangle"""
+        initVals = [self.__width, self.__height, self.__x, self.__y]
+        counter = 0
+        flag = 0
+        for arg in args:
+            if flag == 0:
+                initVals.append(arg)
+                flag = 1
+            else:
+                initVals[counter] = arg
+                counter += 1
+        self.__init__(*tuple(initVals))
