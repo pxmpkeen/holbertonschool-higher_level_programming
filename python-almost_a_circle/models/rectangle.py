@@ -79,7 +79,9 @@ class Rectangle(Base):
 
     def display(self):
         """Displaying rectangle using symbols"""
-        print(("#" * self.__width + '\n') * self.__height, end="")
+        abscissa = " " * self.__x + "#" * self.__width + '\n'
+        ordinate = '\n' * self.__y + abscissa * self.__height
+        print(ordinate, end="")
 
     def __str__(self):
         """Changing toStr method"""
