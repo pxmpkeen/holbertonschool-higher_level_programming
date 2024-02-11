@@ -42,3 +42,13 @@ class Base:
         if json_string is not None and json_string != '':
             return json.loads(json_string)
         return []
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Dict -> Instance"""
+        if cls.__name__ == 'Rectangle':
+            dummy = cls(13579, 24680)
+        elif cls.__name__ == 'Square':
+            dummy = cls(123456789)
+        dummy.update(**dictionary)
+        return dummy
