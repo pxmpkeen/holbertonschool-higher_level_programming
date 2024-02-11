@@ -40,6 +40,6 @@ class Base:
         json_list = []
 
         if json_string is not None and json_string != '':
-            if type(json_string) != str:
-                raise TypeError("json_string must be string")
+            if type(json_string) is not str:
+                raise TypeError("json_string must be a string")
             return json.loads(json_string)
