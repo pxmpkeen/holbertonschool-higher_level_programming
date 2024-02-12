@@ -2,8 +2,9 @@
 """Test for square model"""
 import os
 import unittest
+from io import StringIO
+from unittest.mock import patch
 from models.square import Square
-
 
 class TestBase(unittest.TestCase):
     def test_square(self):

@@ -2,6 +2,8 @@
 """Test for rectangle model"""
 import os
 import unittest
+from io import StringIO
+from unittest.mock import patch
 from models.rectangle import Rectangle
 
 
@@ -44,6 +46,25 @@ class TestBase(unittest.TestCase):
             Rectangle(1, 2, -3)
         with self.assertRaises(ValueError):
             Rectangle(1, 2, 3, -4)
+
+    def test_display(self):
+        r0 = Rectangle(2, 5)
+        res = "##\n##\n##\n##\n##\n"
+        with patch("sys.stdout", new=StringIO()) as out:
+            r0.display()
+            self.assertEqual(out.getvalue(), res)
+        r1 = Rectangle(5, 4, 1, 1)
+        res = "\n #####\n #####\n #####\n #####\n"
+        with patch("sys.stdout", new=StringIO()) as out:
+            r1.display()
+            self.assertEqual(out.getvalue(), res)
+
+
+        r2 = Rectangle(3, 2, 4)
+        res = "    ###\n    ###\n"
+        with patch("sys.stdout", new=StringIO()) as out:
+            r2.display()
+            self.assertEqual(out.getvalue(), res)
 
     def test_area(self):
         r0 = Rectangle(1, 2)
