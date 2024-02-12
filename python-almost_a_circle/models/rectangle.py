@@ -91,31 +91,14 @@ class Rectangle(Base):
         return rectId + " " + rectPoses + " - " + rectSizes
 
     def update(self, *args, **kwargs):
-        """Updating Rectangle"""
-        initVals = [self.__width, self.__height, self.__x, self.__y]
-        counter = 0
-        flag = 0
-        for arg in args:
-            if flag == 0:
-                initVals.append(arg)
-                flag = 1
-            else:
-                initVals[counter] = arg
-                counter += 1
-
-        if flag == 0:
-            initValsDict = {
-                    "width": self.__width,
-                    "height": self.__height,
-                    "x": self.__x,
-                    "y": self.__y,
-                    "id": self.id
-                    }
-        for arg in kwargs.keys():
-            initValsDict[str(arg)] = kwargs[arg]
-
-        initVals = initValsDict.values()
-        self.__init__(*tuple(initVals))
+        """Updates the attributes of the Rectangle instance."""
+        if args:
+            list_atr = ["id", "width", "height", "x", "y"]
+            for i in range(len(args)):
+                setattr(self, list_atr[i], args[i])
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
     def to_dictionary(self):
         """Represent object as dictionary"""
