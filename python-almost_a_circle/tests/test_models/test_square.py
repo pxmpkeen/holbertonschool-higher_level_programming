@@ -1,115 +1,117 @@
 #!/usr/bin/python3
-"""Test for rectangle model"""
+"""Test for square model"""
+import os
 import unittest
-from io import StringIO
-from unittest.mock import patch
-from models.rectangle import Rectangle
+from models.square import Square
 
 
 class TestBase(unittest.TestCase):
-    def test_rectangle(self):
-        r0 = Rectangle(1, 2)
-        self.assertEqual(r0.width, 1)
-        self.assertEqual(r0.height, 2)
-        r1 = Rectangle(1, 2, 3, 4, 5)
-        self.assertEqual(r1.width, 1)
-        self.assertEqual(r1.height, 2)
-        self.assertEqual(r1.x, 3)
-        self.assertEqual(r1.y, 4)
-        self.assertEqual(r1.id, 5)
+    def test_square(self):
+        s3 = Square(1)
+        self.assertEqual(s3.size, 1)
+        self.assertEqual(s3.x, 0)
+        s1 = Square(1, 2)
+        self.assertEqual(s1.size, 1)
+        self.assertEqual(s1.x, 2)
+        s2 = Square(1, 2, 3)
+        self.assertEqual(s2.size, 1)
+        self.assertEqual(s2.x, 2)
+        self.assertEqual(s2.y, 3)
+
+    def test_square1(self):
+        s0 = Square(1, 2, 3, 4)
+        self.assertEqual(s0.size, 1)
+        self.assertEqual(s0.x, 2)
+        self.assertEqual(s0.y, 3)
+        self.assertEqual(s0.id, 4)
 
     def test_type_errors(self):
         with self.assertRaises(TypeError):
-            Rectangle()
+            Square()
         with self.assertRaises(TypeError):
-            Rectangle(1)
+            Square("1")
         with self.assertRaises(TypeError):
-            Rectangle("1", 2)
+            Square(1, "2")
         with self.assertRaises(TypeError):
-            Rectangle(1, "2")
-        with self.assertRaises(TypeError):
-            Rectangle(1, 2, "3")
-        with self.assertRaises(TypeError):
-            Rectangle(1, 2, 3, "4")
+            Square(1, 2, "3")
 
     def test_value_errors(self):
         with self.assertRaises(ValueError):
-            Rectangle(-1, 2)
+            Square(-1)
         with self.assertRaises(ValueError):
-            Rectangle(1, -2)
+            Square(1, -2)
         with self.assertRaises(ValueError):
-            Rectangle(0, 2)
+            Square(1, 2, -3)
         with self.assertRaises(ValueError):
-            Rectangle(1, 0)
-        with self.assertRaises(ValueError):
-            Rectangle(1, 2, -3)
-        with self.assertRaises(ValueError):
-            Rectangle(1, 2, 3, -4)
-
-    def test_area(self):
-        r0 = Rectangle(1, 2)
-        self.assertEqual(r0.area(), 2)
+            Square(0)
 
     def test_str(self):
-        r0 = Rectangle(1, 2, id=66)
-        self.assertEqual(str(r0), "[Rectangle] (66) 0/0 - 1/2")
-
-    def test_display1(self):
-        r0 = Rectangle(2, 5)
-        expected_output = "##\n##\n##\n##\n##\n"
-        with patch("sys.stdout", new=StringIO()) as fake_out:
-            r0.display()
-            self.assertEqual(fake_out.getvalue(), expected_output)
-
-    def test_display_2(self):
-        r1 = Rectangle(2, 2)
-        res = "##\n##\n"
-        with patch("sys.stdout", new=StringIO()) as str_out:
-            r1.display()
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.width = 5
-        res = "#####\n#####\n"
-        with patch("sys.stdout", new=StringIO()) as str_out:
-            r1.display()
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_display_3(self):
-        r1 = Rectangle(5, 4, 1, 1)
-        res = "\n #####\n #####\n #####\n #####\n"
-        with patch("sys.stdout", new=StringIO()) as str_out:
-            r1.display()
-            self.assertEqual(str_out.getvalue(), res)
-
-    def test_display_4(self):
-        r1 = Rectangle(3, 2)
-        res = "###\n###\n"
-        with patch("sys.stdout", new=StringIO()) as str_out:
-            r1.display()
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.x = 4
-        res = "    ###\n    ###\n"
-        with patch("sys.stdout", new=StringIO()) as str_out:
-            r1.display()
-            self.assertEqual(str_out.getvalue(), res)
-
-        r1.y = 2
-        res = "\n\n    ###\n    ###\n"
-        with patch("sys.stdout", new=StringIO()) as str_out:
-            r1.display()
-            self.assertEqual(str_out.getvalue(), res)
+        s0 = Square(1, id=66)
+        self.assertEqual(str(s0), "[Square] (66) 0/0 - 1")
 
     def test_to_dictionary(self):
-        r1 = Rectangle(3, 2)
-        self.assertEqual(
-            r1.to_dictionary(), {"id": 9, "width": 3, "height": 2, "x": 0, "y": 0}
-        )
+        s1 = Square(3, id=55)
+        self.assertEqual(s1.to_dictionary(), {"id": 55, "size": 3, "x": 0, "y": 0})
 
     def test_update(self):
-        r1 = Rectangle(10, 10, 10, 10)
-        r1.update(89, 2, 3, 4, 5)
-        self.assertEqual(str(r1), "[Rectangle] (89) 4/5 - 2/3")
+        s0 = Square(1, 2, 3, 4)
+        s0.update(5, 6, 7, 8)
+        self.assertEqual(s0.id, 5)
+
+    def test_create(self):
+        s1_dictionary = {"x": 3, "y": 4, "id": 89, "size": 1}
+        s1 = Square.create(**s1_dictionary)
+        self.assertEqual(str(s1), "[Square] (89) 3/4 - 1")
+
+    def test_save_to_file(self):
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+
+        Square.save_to_file([Square(1, 2, id=13)])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[{"id": 13, "x": 2, "size": 1, "y": 0}]')
+
+    def test_load_from_file1(self):
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+
+        self.assertEqual(Square.load_from_file(), [])
+
+    def test_load_from_file_2(self):
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+
+        r1 = Square(5, 5)
+
+        inp = [r1]
+        Square.save_to_file(inp)
+        out = Square.load_from_file()
+
+        self.assertEqual(inp[0].__str__(), out[0].__str__())
 
 
 if __name__ == "__main__":

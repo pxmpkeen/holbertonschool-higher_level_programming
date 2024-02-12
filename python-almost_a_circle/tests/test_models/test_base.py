@@ -24,10 +24,10 @@ class TestBase(unittest.TestCase):
         self.assertEqual(base_instance.id, 2)
 
     def test_string_id(self):
-        base_instance = Base("Monty Python")
-        self.assertEqual(base_instance.id, "Monty Python")
-        base_instance = Base("Python is cool")
-        self.assertEqual(base_instance.id, "Python is cool")
+        base_instance = Base("Dude Nigga")
+        self.assertEqual(base_instance.id, "Dude Nigga")
+        base_instance = Base("Nigga Dude")
+        self.assertEqual(base_instance.id, "Nigga Dude")
 
     def test_to_json_string(self):
         self.assertEqual(Base.to_json_string(None), "[]")
