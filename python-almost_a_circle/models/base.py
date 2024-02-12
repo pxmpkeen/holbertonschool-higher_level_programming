@@ -2,6 +2,7 @@
 """
 Creating first class
 """
+import os
 import json
 
 
@@ -52,3 +53,18 @@ class Base:
             dummy = cls(123456789)
         dummy.update(**dictionary)
         return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        """File -> Instance ?"""
+        filename = "{}.json".format(cls.__name__)
+        inst = []
+        dictlist = []
+
+        if os.path.exists(filename):
+            with open(filename, "r") as fd:
+                json = fd.read()
+                dictlist = cls.from_json_string(json)
+                for i in dictlist:
+                    inst.append(cls.create(**i))
+        return inst
