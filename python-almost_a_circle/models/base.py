@@ -2,6 +2,7 @@
 """
 Creating first class
 """
+import turtle
 import os
 import json
 
@@ -68,3 +69,30 @@ class Base:
                 for i in dictlist:
                     inst.append(cls.create(**i))
         return inst
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Oh My Gosh I write with turtle"""
+        win = turtle.Screen()
+        cur = turtle.Turtle()
+        cur.speed(1)
+        def side(s, cur):
+            cur.right(90)
+            cur.forward(s)
+
+        for r in list_rectangles:
+            cur.penup()
+            cur.goto(r.x, r.y)
+            cur.pendown()
+            for i in range(4):
+                if i % 2 == 0:
+                    side(r.width, cur)
+                else:
+                    side(r.height, cur)
+
+        for s in list_squares:
+            cur.penup()
+            cur.goto(s.x, s.y)
+            cur.pendown()
+            for i in range(4):
+                side(s.size, cur)
