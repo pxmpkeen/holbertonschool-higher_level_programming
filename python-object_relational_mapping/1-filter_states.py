@@ -15,8 +15,9 @@ if __name__ == "__main__":
             db=argv[3]
             )
     cur = db.cursor()
+    query = """SELECT * FROM states WHERE name LIKE BINARY "N%" ORDER BY id"""
     try:
-        cur.execute("""SELECT * FROM states WHERE name REGEXP 'N*' ORDER BY id""")
+        cur.execute(query)
         rows = cur.fetchall()
     except MySQLdb.Error as e:
         print(e)
