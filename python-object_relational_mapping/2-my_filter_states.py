@@ -15,8 +15,11 @@ if __name__ == "__main__":
             db=argv[3]
             )
     cur = db.cursor()
-    a = argv[4]
-    query = """SELECT * FROM states WHERE name = {} ORDER BY id""".format(a)
+    query = """
+    SELECT * FROM states WHERE 
+    name LINE BINARY '{}' 
+    ORDER BY id
+    """.format(argv[4])
     try:
         cur.execute(query)
         rows = cur.fetchall()
