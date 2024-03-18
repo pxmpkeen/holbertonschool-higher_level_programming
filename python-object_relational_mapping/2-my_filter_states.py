@@ -16,8 +16,8 @@ if __name__ == "__main__":
             )
     cur = db.cursor()
     query = """
-    SELECT * FROM states WHERE 
-    name LINE BINARY '{}' 
+    SELECT * FROM states WHERE
+    name LINE BINARY '{}'
     ORDER BY id
     """.format(argv[4])
     try:
