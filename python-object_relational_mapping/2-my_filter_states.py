@@ -15,11 +15,12 @@ if __name__ == "__main__":
             db=argv[3]
             )
     cur = db.cursor()
-    query = """
-    SELECT * FROM states WHERE name LIKE '%s' ORDER BY id
-    """.format(argv[4])
+
     try:
-        cur.execute(query)
+        cur.execute("""
+        SELECT * FROM states WHERE name LIKE BINARY '%s' ORDER BY id
+        """.format(argv[4])
+        )
         rows = cur.fetchall()
     except MySQLdb.Error as e:
         print(e)
