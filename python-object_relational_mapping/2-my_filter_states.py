@@ -17,10 +17,10 @@ if __name__ == "__main__":
     cur = db.cursor()
 
     try:
-        cur.execute("""
-        SELECT * FROM states WHERE name LIKE BINARY '%s' ORDER BY id
-        """.format(argv[4])
-        )
+        query = """
+        SELECT * FROM states WHERE name='{:s}' ORDER BY states.id
+        """
+        cur.execute(query.format(argv[4]))
         rows = cur.fetchall()
     except MySQLdb.Error as e:
         print(e)
