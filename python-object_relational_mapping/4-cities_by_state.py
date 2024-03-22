@@ -13,7 +13,7 @@ if __name__ == "__main__":
             FROM `cities` c INNER JOIN `states` s \
             ON c.states_id = s.id ORDER BY c.id ASC""")
 
-    [print(state) for state in cur.fetchall() if state[1] == argv[4]]
+    [print(c) for c in cur.fetchall()]
 
     cur.close()
     db.close()
