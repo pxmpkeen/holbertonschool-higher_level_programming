@@ -12,6 +12,3 @@ if __name__ == "__main__":
     cur.execute("SELECT * FROM `states`")
 
     [print(state) for state in c.fetchall() if state[1] == argv[4]]
-
-    cur.close()
-    db.close()
