@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" Lists all State objects from the database hbtn_0e_6_usa. """
+"""
+List objects
+"""
 
 import sys
 
@@ -8,6 +10,7 @@ from sqlalchemy.orm import sessionmaker
 
 from model_state import State
 
+# Format is mysql+mysqldb://...
 if __name__ == "__main__":
     engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
                            .format(sys.argv[1], sys.argv[2], sys.argv[3]),
